@@ -242,6 +242,7 @@
       // Ảnh thật nằm ở dòng đầu của content, dạng: [img] images/abc.jpg
       const real = String(post.content || "").match(/^\s*\[img\]\s*(\S+)/i);
       if (real) return real[1];
+            return "https://picsum.photos/seed/" + encodeURIComponent(post.id || post.title) + "/640/360";
       const h = hashStr(post.id || post.title);
       const h1 = h % 360, h2 = (h1 + 45) % 360;
       const label = (post.category && post.category[post.category.length - 1]) || "Dân trí";
