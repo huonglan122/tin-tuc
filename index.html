@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dân trí - Tin tức thời sự, pháp luật, kinh doanh, giáo dục, thể thao, giải trí, đời sống cập nhật mỗi ngày." />
-  <title>Dân trí - Trang tin tức</title>
+  <meta name="description" content="TIN TỨC - Tin tức thời sự, pháp luật, kinh doanh, giáo dục, thể thao, giải trí, đời sống cập nhật mỗi ngày." />
+  <title>TIN TỨC - Trang tin tức</title>
   <style>
     /* =========================================================
      * 1. BIẾN & RESET
@@ -422,6 +422,27 @@
 
       .footer-grid { grid-template-columns: 1fr; gap: 26px; padding-top: 30px; }
     }
+        .logo {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo::before {
+      content: "";
+      width: 7px;
+      height: 30px;
+      background: #ffd54a;
+      border-radius: 4px;
+    }
+    .footer-brand { text-transform: uppercase; letter-spacing: 4px; }
+    @media (max-width: 600px) {
+      .logo { font-size: 24px; letter-spacing: 3px; }
+      .logo::before { height: 22px; }
+    }
   </style>
 </head>
 <body>
@@ -429,7 +450,7 @@
   <!-- ===================== HEADER / NAVBAR ===================== -->
   <header class="site-header">
     <div class="container nav-bar">
-      <a href="#/" class="logo" aria-label="Trang chủ">Dân trí</a>
+      <a href="#/" class="logo" aria-label="Trang chủ">TIN TỨC</a>
 
       <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav">
         <span class="bars"></span>
@@ -450,7 +471,7 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
       <section>
-        <div class="footer-brand">Dân trí</div>
+        <div class="footer-brand">TIN TỨC</div>
         <p>Trang tin điện tử cập nhật nhanh các tin tức thời sự, pháp luật, kinh doanh, giáo dục, thể thao, giải trí và đời sống trong nước và quốc tế.</p>
       </section>
 
@@ -488,7 +509,7 @@
       </section>
     </div>
     <div class="copyright">
-      <div class="container">&copy; <span id="year"></span> Dân trí. Giữ toàn quyền nội dung.</div>
+      <div class="container">&copy; <span id="year"></span> TIN TỨC. Giữ toàn quyền nội dung.</div>
     </div>
   </footer>
 
@@ -539,7 +560,7 @@
       const icon = ICONS[DataStore.slugify(cats[0] || '')] || '📰';
       const h = hashStr(post.id || post.title);
       const h1 = h % 360, h2 = (h1 + 45) % 360;
-      const label = cats[cats.length - 1] || 'Dân trí';
+      const label = cats[cats.length - 1] || 'TIN TỨC';
       const svg =
         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice">` +
         `<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">` +
@@ -718,7 +739,7 @@
             ${metaHtml(p)}
             <h3 class="card-title"><a href="${postHref(p)}">${esc(p.title)}</a></h3>
             <p class="excerpt">${esc(p.excerpt)}</p>
-            <div class="meta">Tác giả: ${esc(p.author)} &middot; Nguồn: ${esc(p.source)}</div>
+            <div class="meta">Tác giả: ${esc(p.author)}</div>
           </div>
         </article>`;
     }
@@ -801,7 +822,7 @@
           posts: POSTS,
         });
         routeKey = "";
-        document.title = isLatest ? "Tin mới - Dân trí" : "Dân trí - Trang tin tức";
+        document.title = isLatest ? "Tin mới - TIN TỨC" : "TIN TỨC - Trang tin tức";
       } else if (hash.startsWith("c/")) {
         const slug = decodeURIComponent(hash.slice(2));
         const found = findCategory(slug);
@@ -810,7 +831,7 @@
           $("#app").innerHTML = `<div class="empty-state">
               <p>Không tìm thấy chuyên mục "${esc(slug)}".</p>
               <p><a href="#/">Quay về trang chủ</a></p></div>`;
-          document.title = "Không tìm thấy - Dân trí";
+          document.title = "Không tìm thấy - TIN TỨC";
         } else {
           const { node, parent } = found;
           // Nếu là mục cha: hiển thị chip các mục con; nếu là mục con: chip của mục cha
@@ -829,7 +850,7 @@
             subcats,
           });
           routeKey = "c/" + slug;
-          document.title = `${node.title} - Dân trí`;
+          document.title = `${node.title} - TIN TỨC`;
         }
       } else {
         location.hash = "#/";

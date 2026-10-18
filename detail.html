@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chi tiết bài viết - Dân trí</title>
+  <title>Chi tiết bài viết - TIN TỨC</title>
   <style>
     :root {
       --primary: #0a7d3b;
@@ -159,13 +159,34 @@
       .article-body p { font-size: 17px; }
       .footer-grid { grid-template-columns: 1fr; gap: 26px; padding-top: 30px; }
     }
+        .logo {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo::before {
+      content: "";
+      width: 7px;
+      height: 30px;
+      background: #ffd54a;
+      border-radius: 4px;
+    }
+    .footer-brand { text-transform: uppercase; letter-spacing: 4px; }
+    @media (max-width: 600px) {
+      .logo { font-size: 24px; letter-spacing: 3px; }
+      .logo::before { height: 22px; }
+    }
   </style>
 </head>
 <body>
 
   <header class="site-header">
     <div class="container nav-bar">
-      <a href="index.html#/" class="logo" aria-label="Trang chủ">Dân trí</a>
+      <a href="index.html#/" class="logo" aria-label="Trang chủ">TIN TỨC</a>
       <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav"><span class="bars"></span></button>
       <nav class="main-nav" id="mainNav" aria-label="Chuyên mục chính">
         <ul class="menu" id="menu"></ul>
@@ -180,7 +201,7 @@
   <footer class="site-footer" id="contact">
     <div class="container footer-grid">
       <section>
-        <div class="footer-brand">Dân trí</div>
+        <div class="footer-brand">TIN TỨC</div>
         <p>Trang tin điện tử cập nhật nhanh các tin tức thời sự, pháp luật, kinh doanh, giáo dục, thể thao, giải trí và đời sống trong nước và quốc tế.</p>
       </section>
       <section>
@@ -209,7 +230,7 @@
       </section>
     </div>
     <div class="copyright">
-      <div class="container">&copy; <span id="year"></span> Dân trí. Giữ toàn quyền nội dung.</div>
+      <div class="container">&copy; <span id="year"></span> TIN TỨC. Giữ toàn quyền nội dung.</div>
     </div>
   </footer>
 
@@ -240,7 +261,7 @@
       const icon = ICONS[DataStore.slugify(cats[0] || '')] || '📰';
       const h = hashStr(post.id || post.title);
       const h1 = h % 360, h2 = (h1 + 45) % 360;
-      const label = cats[cats.length - 1] || 'Dân trí';
+      const label = cats[cats.length - 1] || 'TIN TỨC';
       const svg =
         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice">` +
         `<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">` +
@@ -324,7 +345,7 @@
 
     /* ---------- Hiển thị bài viết ---------- */
     function renderNotFound() {
-      document.title = "Không tìm thấy bài viết - Dân trí";
+      document.title = "Không tìm thấy bài viết - TIN TỨC";
       $("#app").innerHTML = `<div class="empty-state">
         <h2>Không tìm thấy bài viết</h2>
         <p>Bài viết không tồn tại hoặc đã bị gỡ bỏ.</p>
@@ -332,7 +353,7 @@
     }
 
     function renderArticle(post, allPosts) {
-      document.title = `${post.title} - Dân trí`;
+      document.title = `${post.title} - TIN TỨC`;
 
       const cats = Array.isArray(post.category) ? post.category : [];
       const crumbs =
@@ -369,7 +390,6 @@
             <div class="article-meta">
               <span>Tác giả: <strong>${esc(post.author)}</strong></span>
               <span>${displayDate(post.publishedAt)}</span>
-              <span>Nguồn: <strong>${esc(post.source)}</strong></span>
             </div>
             ${post.excerpt ? `<p class="sapo">${esc(post.excerpt)}</p>` : ""}
             <img referrerpolicy="no-referrer" class="hero" src="${thumbSrc(post)}" alt="${esc(post.title)}" />
