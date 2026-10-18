@@ -241,8 +241,11 @@
     function thumbSrc(post) {
       // Ảnh thật nằm ở dòng đầu của content, dạng: [img] images/abc.jpg
       const real = String(post.content || "").match(/^\s*\[img\]\s*(\S+)/i);
-      if (real) return real[1];
-            return "https://picsum.photos/seed/" + encodeURIComponent(post.id || post.title) + "/640/360";
+            if (real) return real[1];
+      const KW = {'the-gioi':'city','thoi-su':'city','phap-luat':'law','suc-khoe':'doctor','doi-song':'family','du-lich':'landscape','kinh-doanh':'office','bat-dong-san':'building','the-thao':'stadium','giai-tri':'concert','giao-duc':'school','xe':'car','noi-vu':'meeting','nhan-ai':'children'};
+      const c0 = (post.category || [])[0] || '';
+      const kw = KW[DataStore.slugify(c0)] || 'news';
+      return 'https://loremflickr.com/640/360/' + kw + '?lock=' + (hashStr(post.id || post.title) % 100000);
       const h = hashStr(post.id || post.title);
       const h1 = h % 360, h2 = (h1 + 45) % 360;
       const label = (post.category && post.category[post.category.length - 1]) || "Dân trí";
