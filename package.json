@@ -1,0 +1,8 @@
+{
+  "name": "dantri-crawler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Thu thập bài viết từ dantri.com.vn cho bài tập lớn",
+  "scripts": { "crawl": "node crawl.js" },
+  "dependencies": { "cheerio": "^1.0.0" }
+}
